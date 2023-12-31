@@ -58,5 +58,6 @@ button:hover{
   background-color: rgb(232, 232, 101);
   border: 3px solid black;
   color: rgb(14, 68, 14);
+  font-weight: 600;
   transform: translateY(4px);
 }
