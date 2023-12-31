@@ -7,6 +7,17 @@ body{
   margin: auto;
 }
 
+section{
+  text-align: center;
+}
+
+.game-title{
+  font-size: 70px;
+  font-family: 'Dancing Script', cursive;
+  color: rgb(14, 68, 14);
+  font-weight: bolder; 
+}
+
 .container{
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -46,6 +57,6 @@ button{
 button:hover{
   background-color: rgb(232, 232, 101);
   border: 3px solid black;
-  color: blue;
+  color: rgb(14, 68, 14);
   transform: translateY(4px);
 }
