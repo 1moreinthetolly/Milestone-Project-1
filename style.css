@@ -32,3 +32,20 @@ body{
 .tile:hover{
   background-color: gray;
 }
+
+button{
+  background-color: rgb(59, 57, 57);
+  border-radius: 8px;
+  font-size: 1.3em;
+  transition: 0.3s;
+  border: 3px solid rgb(164, 160, 160);
+  cursor: pointer;
+  color: white;
+}
+
+button:hover{
+  background-color: rgb(232, 232, 101);
+  border: 3px solid black;
+  color: blue;
+  transform: translateY(4px);
+}
