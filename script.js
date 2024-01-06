@@ -1,18 +1,16 @@
 const statusDisplay = document.querySelector('.game-state');
 
 let gameActive = true;
-
 let currentPlayer = "X";
-
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
 const winningMessage = () => `Player ${currentPlayer} has won!`;
 const drawMessage = () => `Game ended in a draw!`;
-const currentPlayerTurn = () => `It's ${currentPlayer}'s turn`;
+const currentPlayerTurn = () => `Player ${currentPlayer}'s move`;
 
 statusDisplay.innerHTML = currentPlayerTurn();
 
-document.querySelectorAll('.tile').forEach(tile => tile.addEventListener('click', handleCellClick));
+document.querySelectorAll('.tile').forEach(tile => tile.addEventListener('click', handleTileClick));
 document.querySelector('.game-new').addEventListener('click', handleRestartGame);
 
 function handleTileClick(clickedTileEvent) {   
