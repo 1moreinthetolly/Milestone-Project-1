@@ -10,6 +10,8 @@ const currentPlayerTurn = () => currentPlayer === "X" ? "Your turn" : "CPU turn"
 
 statusDisplay.innerHTML = currentPlayerTurn();
 
+// Function handles tile selection
+
 function handleTileClick(clickedTileEvent) {   
         const clickedTile = clickedTileEvent.target;
         const clickedTileIndex = parseInt(
@@ -40,29 +42,34 @@ function handleTilePlayed(clickedTile, clickedTileIndex) {
         [0, 4, 8],
         [2, 4, 6]
     ];
-    function handleResultValidation() {
+
+// Function loops winning order and checks for winner
+
+function handleResultValidation() {
         let roundWon = false;
         for (let i = 0; i <= 7; i++) {
             const winOrder = winningOrders[i];
             let a = gameState[winOrder[0]];
             let b = gameState[winOrder[1]];
             let c = gameState[winOrder[2]];
-            if (a === '' || b === '' || c === '') {
+            
+        if (a === '' || b === '' || c === '') {
                 continue;
             }
-            if (a === b && b === c) {
+        if (a === b && b === c) {
                 roundWon = true;
                 break
             }
         }
-    if (roundWon) {
+
+        if (roundWon) {
         statusDisplay.innerHTML = winningMessage();
         gameActive = false;
         return;
     }
 
     let roundDraw = !gameState.includes("");
-    if (roundDraw) {
+        if (roundDraw) {
         statusDisplay.innerHTML = drawMessage();
         gameActive = false;
         return;
@@ -80,6 +87,8 @@ function handlePlayerChange() {
     }
 }
 
+// Function handles random CPU move
+
 function makeCpuMove() {
     const emptyTiles = gameState
         .map((val, idx) => val === "" ? idx : null)
@@ -93,6 +102,8 @@ function makeCpuMove() {
         handleResultValidation();
     }
 }
+
+// Function starts new game
 
 function handleRestartGame() {
     gameActive = true;
