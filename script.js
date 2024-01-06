@@ -4,14 +4,11 @@ let gameActive = true;
 let currentPlayer = "X";
 let gameState = ["", "", "", "", "", "", "", "", ""];
 
-const winningMessage = () => `Player ${currentPlayer} has won!`;
+const winningMessage = () => `${currentPlayer === "X" ? "You" : "CPU"} won!`;
 const drawMessage = () => `Game ended in a draw!`;
-const currentPlayerTurn = () => `Player ${currentPlayer}'s move`;
+const currentPlayerTurn = () => currentPlayer === "X" ? "Your turn" : "CPU turn";
 
 statusDisplay.innerHTML = currentPlayerTurn();
-
-document.querySelectorAll('.tile').forEach(tile => tile.addEventListener('click', handleTileClick));
-document.querySelector('.game-new').addEventListener('click', handleRestartGame);
 
 function handleTileClick(clickedTileEvent) {   
         const clickedTile = clickedTileEvent.target;
@@ -77,6 +74,24 @@ function handleTilePlayed(clickedTile, clickedTileIndex) {
 function handlePlayerChange() {
     currentPlayer = currentPlayer === "X" ? "O" : "X";
     statusDisplay.innerHTML = currentPlayerTurn();
+
+    if(currentPlayer=== "O"){
+        setTimeout(makeCpuMove, 1000)
+    }
+}
+
+function makeCpuMove() {
+    const emptyTiles = gameState
+        .map((val, idx) => val === "" ? idx : null)
+        .filter(val => val !== null);
+
+    const randomTileIndex = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+
+    if (randomTileIndex !== undefined) {
+        const tileToClick = document.querySelector(`[tile-index="${randomTileIndex}"]`);
+        handleTilePlayed(tileToClick, randomTileIndex);
+        handleResultValidation();
+    }
 }
 
 function handleRestartGame() {
@@ -87,3 +102,6 @@ function handleRestartGame() {
     document.querySelectorAll('.tile')
                .forEach(tile => tile.innerHTML = "");
 }    
+
+document.querySelectorAll('.tile').forEach(tile => tile.addEventListener('click', handleTileClick));
+document.querySelector('.game-new').addEventListener('click', handleRestartGame);
