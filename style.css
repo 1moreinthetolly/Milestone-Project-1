@@ -34,6 +34,7 @@ footer{
   border: 5px solid rgb(149, 181, 100);
   border-radius: 8px;
   background-color: rgb(149, 181, 100);
+  cursor: pointer;
 }
 
 .tile{
